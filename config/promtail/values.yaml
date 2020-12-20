@@ -1,0 +1,6 @@
+serviceMonitor:
+  enabled: true
+
+initContainer:
+  enabled: true
+  fsInotifyMaxUserInstances: 1024

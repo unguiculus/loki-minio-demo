@@ -1,0 +1,12 @@
+tolerations:
+  - effect: NoSchedule
+    key: node-role.kubernetes.io/master
+
+serviceMonitor:
+  enabled: true
+
+lokiAddress: loki-gateway
+
+extraArgs:
+  - -labelname=pod
+  - -labelvalue=$(POD_NAME)

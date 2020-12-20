@@ -1,0 +1,121 @@
+fullnameOverride: monitoring
+nameOverride: monitoring
+
+prometheus:
+  prometheusSpec:
+    replicas: 1
+    retention: 30d
+    externalUrl: http://localhost:30123/prom
+    routePrefix: /prom
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    ruleSelectorNilUsesHelmValues: false
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 1Gi
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+    path: /
+    hosts:
+      - localhost
+
+alertmanager:
+  alertmanagerSpec:
+    externalUrl: http://localhost:30123/alerts
+    routePrefix: /alerts
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+    path: /
+    hosts:
+      - localhost
+
+grafana:
+  image:
+    tag: 7.3.6
+  dashboardProviders:
+    dashboardproviders.yaml:
+      apiVersion: 1
+      providers:
+        - name: loki
+          orgId: 1
+          folder: Loki
+          type: file
+          disableDeletion: false
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/loki
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+        - name: Loki
+          type: loki
+          url: http://loki-gateway.loki.svc.cluster.local
+          access: proxy
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+    path: /grafana
+    hosts:
+      - localhost
+  grafana.ini:
+    server:
+      domain: localhost
+      root_url: http://localhost:30123/grafana
+      serve_from_sub_path: true
+    auth.anonymous:
+      enabled: true
+      org_role: Admin
+
+kubeApiServer:
+  enabled: false
+kubelet:
+  enabled: true
+kubeControllerManager:
+  enabled: false
+coreDns:
+  enabled: false
+kubeEtcd:
+  enabled: false
+kubeScheduler:
+  enabled: false
+kubeProxy:
+  enabled: false
+
+defaultRules:
+  create: true
+  rules:
+    etcd: false
+    kubeApiserver: false
+    kubeApiserverAvailability: false
+    kubeApiserverError: false
+    kubeApiserverSlos: false
+    kubelet: true
+    kubeScheduler: false
+    time: false
+    node: true
+    kubernetesSystem: false
+    general: true
+    alertmanager: true
+    k8s: true
+    kubePrometheusGeneral: true
+    kubePrometheusNodeAlerting: true
+    kubePrometheusNodeRecording: true
+    kubernetesAbsent: true
+    kubernetesApps: true
+    kubernetesResources: true
+    kubernetesStorage: true
+    kubeStateMetrics: true
+    network: true
+    prometheus: true
+    prometheusOperator: true

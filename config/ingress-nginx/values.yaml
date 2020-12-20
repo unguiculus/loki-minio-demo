@@ -1,0 +1,16 @@
+controller:
+  service:
+    enableHttps: false
+    type: NodePort
+    nodePorts:
+      http: 30123
+
+  nodeSelector:
+    ingress-ready: 'true'
+
+  tolerations:
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/master
+
+  admissionWebhooks:
+    enabled: false
