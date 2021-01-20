@@ -7,6 +7,7 @@ Demo setup for Grafana Loki in microservices mode using MinIO as storage backend
 The following pre-requisites must be installed:
 
 * [Helm 3](https://helm.sh/)
+* [kubectl](https://kubernetes.io/de/docs/tasks/tools/install-kubectl/)
 * [Docker](https://www.docker.com/)
 * [kind](https://github.com/kubernetes-sigs/kind/)
 
