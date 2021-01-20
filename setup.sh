@@ -12,7 +12,11 @@ LOKI_VERSION=0.22.0
 PROMTAIL_VERSION=3.0.1
 CANARY_VERSION=0.2.0
 
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" > /dev/null 2>&1 && pwd -P)
+
 main() {
+    pushd "$SCRIPT_DIR" > /dev/null
+
     if [[ -n "${1:-}" ]]; then
         echo '🚀 Updating Loki demo setup...'
         echo
@@ -25,6 +29,7 @@ main() {
 
         setup_chart_repos
         setup_cluster
+        setup_registry
         setup_ingress_nginx
         setup_metrics_server
         setup_monitoring
@@ -36,6 +41,8 @@ main() {
 
     echo
     echo '🎉 Done.'
+
+    popd > /dev/null
 }
 
 setup_chart_repos() {
@@ -60,13 +67,6 @@ setup_cluster() {
         echo '🟡 Creating kind cluster...'
         echo
 
-        if ! docker container inspect loki-registry-proxy &> /dev/null; then
-            # local pull-through registry
-            docker container run --name loki-registry-proxy --net kind --detach \
-                --env REGISTRY_PROXY_REMOTEURL=https://registry-1.docker.io \
-                registry:2
-        fi
-
         kind create cluster --name=loki-minio-demo --config=config/kind/config.yaml
 
         echo
@@ -75,6 +75,27 @@ setup_cluster() {
     else
         echo
         echo '📣️️ kind cluster already exists. Re-using it!'
+        echo
+    fi
+}
+
+setup_registry() {
+    if ! docker container inspect loki-registry-proxy &> /dev/null; then
+        echo
+        echo '🟡 Creating pull-through Docker registry...'
+        echo
+
+        docker container run --name loki-registry-proxy --net kind --detach \
+            --env REGISTRY_PROXY_REMOTEURL=https://registry-1.docker.io \
+            --volume "$(pwd)/.registry:/var/lib/registry" \
+            registry:2
+
+        echo
+        echo '✅ Finished creating pull-through Docker registry.'
+        echo
+    else
+        echo
+        echo '📣️️ Pull-through Docker registry already exists. Re-using it!'
         echo
     fi
 }
@@ -100,7 +121,6 @@ setup_metrics_server() {
 
     log_finished metrics-server
 }
-
 
 setup_monitoring() {
     log_start monitoring
