@@ -38,7 +38,7 @@ Port 30123 is mapped to the same port on the master node in order to enable ingr
 * promtail
 * loki-canary
 
-#### Loki is installed with the following components:
+### Loki is installed with the following components:
 
 * gateway
 * ingester
