@@ -40,19 +40,7 @@ alertmanager:
 
 grafana:
   image:
-    tag: 7.3.6
-  dashboardProviders:
-    dashboardproviders.yaml:
-      apiVersion: 1
-      providers:
-        - name: loki
-          orgId: 1
-          folder: Loki
-          type: file
-          disableDeletion: false
-          editable: true
-          options:
-            path: /var/lib/grafana/dashboards/loki
+    tag: 7.3.7
   datasources:
     datasources.yaml:
       apiVersion: 1
