@@ -53,6 +53,12 @@ compactor:
   persistence:
     enabled: true
 
+tableManager:
+  enabled: true
+  extraEnvFrom:
+    - secretRef:
+        name: minio-credentials
+
 ruler:
   enabled: true
   replicas: 2

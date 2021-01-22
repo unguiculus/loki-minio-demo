@@ -107,6 +107,11 @@ frontend:
 compactor:
   shared_store: s3
 
+table_manager:
+  retention_deletes_enabled: true
+  retention_period: 720h
+  poll_interval: 24h
+
 ruler:
   storage:
     type: local
