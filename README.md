@@ -30,13 +30,13 @@ Port 30123 is mapped to the same port on the master node in order to enable ingr
 
 ### The following Helm charts are installed:
 
-* ingress-nginx
-* metrics-server
-* kube-prometheus-stack
-* minio
-* loki-distributed
-* promtail
-* loki-canary
+* [ingress-nginx](https://github.com/kubernetes/ingress-nginx/tree/master/charts/ingress-nginx)
+* [metrics-server](https://github.com/bitnami/charts/tree/master/bitnami/metrics-server)
+* [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack)
+* [minio](https://github.com/minio/charts/tree/master/minio)
+* [loki-distributed](https://github.com/grafana/helm-charts/tree/main/charts/loki-distributed)
+* [promtail](https://github.com/grafana/helm-charts/tree/main/charts/promtail)
+* [loki-canary](https://github.com/grafana/helm-charts/tree/main/charts/loki-canary)
 
 ### Loki is installed with the following components:
 
