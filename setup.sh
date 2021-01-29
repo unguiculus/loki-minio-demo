@@ -35,6 +35,7 @@ main() {
         setup_monitoring
         setup_minio
         setup_loki
+        setup_eventrouter
         setup_promtail
         setup_canary
     fi
@@ -128,10 +129,8 @@ setup_monitoring() {
     helm upgrade monitoring prometheus-community/kube-prometheus-stack --install --wait \
         --version="$KUBE_PROMETHEUS_STACK_VERSION" \
         --namespace=monitoring --create-namespace \
-        --values=config/monitoring/values.yaml \
-        "${dashboard_args[@]}"
+        --values=config/monitoring/values.yaml
 
-    local dashboard_args=()
     local dashboard_path
     for dashboard_path in config/monitoring/dashboards/*.json; do
         local name
@@ -187,6 +186,15 @@ setup_loki() {
         --set-file=loki.config=config/loki/config.yaml
 
     log_finished Loki
+}
+
+setup_eventrouter() {
+    log_start Eventrouter
+
+    helm upgrade eventrouter charts/eventrouter --install --wait \
+        --namespace=logging  --create-namespace
+
+    log_finished Eventrouter
 }
 
 setup_promtail() {

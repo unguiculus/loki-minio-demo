@@ -35,6 +35,7 @@ Port 30123 is mapped to the same port on the master node in order to enable ingr
 * [kube-prometheus-stack](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack)
 * [minio](https://github.com/minio/charts/tree/master/minio)
 * [loki-distributed](https://github.com/grafana/helm-charts/tree/main/charts/loki-distributed)
+* [Heptio Eventrouter](https://github.com/heptiolabs/eventrouter)
 * [promtail](https://github.com/grafana/helm-charts/tree/main/charts/promtail)
 * [loki-canary](https://github.com/grafana/helm-charts/tree/main/charts/loki-canary)
 
@@ -61,10 +62,10 @@ Single-Store (boltdb-shipper) is used for index storage with MinIO as storage ba
 * Alertmanager: http://localhost:30123/alerts
 * MinIO: http://localhost:30123/minio
 
-  MinIO secret key and access keys for logging into the UI can be retrieved with the following commands.
+  MinIO access key and secret key for logging into the UI can be retrieved with the following commands.
   ```console
-  kubectl get secret -n minio minio-credentials -o jsonpath="{.data.secretkey}" | base64 --decode | xargs echo
   kubectl get secret -n minio minio-credentials -o jsonpath="{.data.accesskey}" | base64 --decode | xargs echo
+  kubectl get secret -n minio minio-credentials -o jsonpath="{.data.secretkey}" | base64 --decode | xargs echo
   ```
 
 ### Grafana Dashboards
@@ -73,3 +74,4 @@ Besides a number of dashboards that come with the kube-prometheus-stack, the fol
 
 * Loki Operational (adapted from Grafana's Tanka setup): http://localhost:30123/grafana/d/loki-operational/
 * Loki Canary: http://localhost:30123/grafana/d/loki-canary/
+* Kubernetes Events: http://localhost:30123/grafana/d/kubernetes-events/

@@ -4,3 +4,22 @@ serviceMonitor:
 initContainer:
   enabled: true
   fsInotifyMaxUserInstances: 1024
+
+updateStrategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 100%
+
+config:
+  snippets:
+    pipelineStages:
+      - cri: {}
+      - match:
+          # For event router logs we add a special label for the event namespace
+          selector: '{app="eventrouter"}'
+          stages:
+            - json:
+                expressions:
+                  event_namespace: event.metadata.namespace
+            - labels:
+                event_namespace:
