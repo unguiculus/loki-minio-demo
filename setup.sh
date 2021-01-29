@@ -167,7 +167,7 @@ setup_minio() {
 setup_loki() {
     log_start Loki
 
-    kubectl create namespace loki --dry-run=client --output=yaml --save-config | kubectl apply --filename=-
+    kubectl create namespace logging --dry-run=client --output=yaml --save-config | kubectl apply --filename=-
 
     local access_key
     access_key=$(kubectl get secret --namespace=minio minio-credentials --output jsonpath="{.data.accesskey}" | base64 --decode)
@@ -175,14 +175,14 @@ setup_loki() {
     local secret_key
     secret_key=$(kubectl get secret --namespace=minio minio-credentials --output=jsonpath="{.data.secretkey}" | base64 --decode)
 
-    kubectl create secret generic minio-credentials --namespace=loki \
+    kubectl create secret generic minio-credentials --namespace=logging \
         --from-literal=AWS_ACCESS_KEY="$access_key" \
         --from-literal=AWS_SECRET_KEY="$secret_key" \
         --dry-run=client --output=yaml --save-config | kubectl apply --filename=-
 
     helm upgrade loki grafana/loki-distributed --install --wait --timeout=10m \
         --version="$LOKI_VERSION" \
-        --namespace=loki \
+        --namespace=logging \
         --values=config/loki/values.yaml \
         --set-file=loki.config=config/loki/config.yaml
 
@@ -194,7 +194,7 @@ setup_promtail() {
 
     helm upgrade promtail grafana/promtail --install --wait \
         --version="$PROMTAIL_VERSION" \
-        --namespace=loki --create-namespace \
+        --namespace=logging --create-namespace \
         --values=config/promtail/values.yaml
 
     log_finished Promtail
@@ -205,7 +205,7 @@ setup_canary() {
 
     helm upgrade loki-canary grafana/loki-canary --install --wait \
         --version="$CANARY_VERSION" \
-        --namespace=loki --create-namespace \
+        --namespace=logging --create-namespace \
         --values=config/canary/values.yaml
 
     log_finished 'Loki Canary'

@@ -18,7 +18,7 @@
   "editable": true,
   "gnetId": 11489,
   "graphTooltip": 1,
-  "iteration": 1609792688645,
+  "iteration": 1611943595320,
   "links": [],
   "panels": [
     {
@@ -64,7 +64,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(loki_canary_entries_total{pod=~\"$pod\"})",
@@ -123,7 +123,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(rate(loki_canary_entries_total{pod=~\"$pod\"}[30m]))",
@@ -184,7 +184,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(loki_canary_missing_entries_total{pod=~\"$pod\"})",
@@ -242,7 +242,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(rate(loki_canary_missing_entries_total{pod=~\"$pod\"}[30m]))",
@@ -304,7 +304,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(loki_canary_websocket_missing_entries_total{pod=~\"$pod\"})",
@@ -362,7 +362,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(rate(loki_canary_websocket_missing_entries_total{pod=~\"$pod\"}[30m]))",
@@ -420,7 +420,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(loki_canary_spot_check_entries_total{pod=~\"$pod\"})",
@@ -478,7 +478,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(rate(loki_canary_spot_check_entries_total{pod=~\"$pod\"}[30m]))",
@@ -540,7 +540,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(loki_canary_spot_check_missing_entries_total{pod=~\"$pod\"})",
@@ -598,7 +598,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(rate(loki_canary_spot_check_missing_entries_total{pod=~\"$pod\"}[30m]))",
@@ -659,7 +659,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(loki_canary_unexpected_entries_total{pod=~\"$pod\"})",
@@ -717,7 +717,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(rate(loki_canary_unexpected_entries_total{pod=~\"$pod\"}[30m]))",
@@ -779,7 +779,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(loki_canary_duplicate_entries_total{pod=~\"$pod\"})",
@@ -837,7 +837,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(rate(loki_canary_duplicate_entries_total{pod=~\"$pod\"}[30m]))",
@@ -899,7 +899,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(loki_canary_out_of_order_entries_total{pod=~\"$pod\"})",
@@ -957,7 +957,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(rate(loki_canary_out_of_order_entries_total{pod=~\"$pod\"}[30m]))",
@@ -1015,7 +1015,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(loki_canary_ws_pings_total{pod=~\"$pod\"})",
@@ -1073,7 +1073,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(rate(loki_canary_ws_pings_total{pod=~\"$pod\"}[30m]))",
@@ -1131,7 +1131,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(loki_canary_ws_reconnects_total{pod=~\"$pod\"})",
@@ -1189,7 +1189,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(rate(loki_canary_ws_reconnects_total{pod=~\"$pod\"}[30m]))",
@@ -1252,7 +1252,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "abs(sum(loki_canary_metric_test_expected{pod=~\"$pod\"}) - sum(loki_canary_metric_test_actual{pod=~\"$pod\"}))",
@@ -1310,7 +1310,7 @@
         },
         "textMode": "value_and_name"
       },
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "sum(loki_canary_metric_test_actual{pod=~\"$pod\"})",
@@ -1372,7 +1372,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1485,7 +1485,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1599,7 +1599,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.3.6",
+      "pluginVersion": "7.3.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1718,7 +1718,7 @@
       {
         "allValue": null,
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "All",
           "value": "$__all"
         },
@@ -1744,9 +1744,9 @@
       },
       {
         "current": {
-          "selected": true,
-          "text": "loki",
-          "value": "loki"
+          "selected": false,
+          "text": "logging",
+          "value": "logging"
         },
         "error": null,
         "hide": 2,
@@ -1755,11 +1755,11 @@
         "options": [
           {
             "selected": true,
-            "text": "loki",
-            "value": "loki"
+            "text": "logging",
+            "value": "logging"
           }
         ],
-        "query": "loki",
+        "query": "logging",
         "skipUrlSync": false,
         "type": "constant"
       }
