@@ -1,0 +1,4 @@
+fullnameOverride: test-logger-logfmt
+nameOverride: test-logger-logfmt
+
+logType: logfmt

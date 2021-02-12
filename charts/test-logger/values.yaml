@@ -1,9 +1,8 @@
 image:
-  registry: gcr.io
-  repository: heptio-images/eventrouter
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  registry: docker.io
+  repository: ubuntu
+  pullPolicy: Always
+  tag: focal
 
 nameOverride: ""
 fullnameOverride: ""
@@ -27,7 +26,4 @@ securityContext:
 
 resources: {}
 
-config: |
-  {
-    "sink": "stdout"
-  }
+logType: logfmt

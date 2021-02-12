@@ -23,3 +23,18 @@ config:
                   event_namespace: event.metadata.namespace
             - labels:
                 event_namespace:
+      - match:
+          selector: '{app="test-logger-json"}'
+          stages:
+            - json:
+                expressions:
+                  level: level
+            - labels:
+                level:
+      - match:
+          selector: '{app="test-logger-logfmt"}'
+          stages:
+            - regex:
+                expression: "level=(?P<level>\\S+)"
+            - labels:
+                level:

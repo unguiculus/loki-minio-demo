@@ -6,10 +6,10 @@ set -o pipefail
 
 INGRESS_NGINX_VERSION=3.23.0
 METRICS_SERVER_VERSION=5.4.0
-KUBE_PROMETHEUS_STACK_VERSION=13.5.0
+KUBE_PROMETHEUS_STACK_VERSION=13.7.2
 MINIO_VERSION=8.0.9
 LOKI_VERSION=0.25.0
-PROMTAIL_VERSION=3.0.5
+PROMTAIL_VERSION=3.1.0
 CANARY_VERSION=0.2.0
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" > /dev/null 2>&1 && pwd -P)
@@ -38,6 +38,7 @@ main() {
         setup_eventrouter
         setup_promtail
         setup_canary
+        setup_test_loggers
     fi
 
     echo
@@ -217,6 +218,20 @@ setup_canary() {
         --values=config/canary/values.yaml
 
     log_finished 'Loki Canary'
+}
+
+setup_test_loggers() {
+    log_start 'Test loggers'
+
+    helm upgrade test-logger-json charts/test-logger --install --wait \
+        --namespace=apps --create-namespace \
+        --values=config/test-logger/values-json.yaml
+
+    helm upgrade test-logger-logfmt charts/test-logger --install --wait \
+        --namespace=apps --create-namespace \
+        --values=config/test-logger/values-logfmt.yaml
+
+    log_finished 'Test loggers'
 }
 
 log_start() {

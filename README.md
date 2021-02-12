@@ -38,6 +38,7 @@ Port 30123 is mapped to the same port on the master node in order to enable ingr
 * [Heptio Eventrouter](https://github.com/heptiolabs/eventrouter)
 * [promtail](https://github.com/grafana/helm-charts/tree/main/charts/promtail)
 * [loki-canary](https://github.com/grafana/helm-charts/tree/main/charts/loki-canary)
+* [test-logger](charts/test-logger)
 
 ### Loki is installed with the following components:
 
@@ -67,6 +68,11 @@ Single-Store (boltdb-shipper) is used for index storage with MinIO as storage ba
   kubectl get secret -n minio minio-credentials -o jsonpath="{.data.accesskey}" | base64 --decode | xargs echo
   kubectl get secret -n minio minio-credentials -o jsonpath="{.data.secretkey}" | base64 --decode | xargs echo
   ```
+
+### Test Loggers
+
+Two instances of the test-logger chart are installed which simply log test messages for demo purposes, one in JSON format and one in logfmt format.
+The Promtail configuration demonstrates how to extract the log level as label.
 
 ### Grafana Dashboards
 

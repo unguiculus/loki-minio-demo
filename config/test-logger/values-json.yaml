@@ -1,0 +1,4 @@
+fullnameOverride: test-logger-json
+nameOverride: test-logger-json
+
+logType: json
