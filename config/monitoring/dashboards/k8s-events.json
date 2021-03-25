@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1611943016492,
+  "iteration": 1616661828111,
   "links": [],
   "panels": [
     {
@@ -288,7 +288,7 @@
           "text": "All",
           "value": "$__all"
         },
-        "datasource": "Loki",
+        "datasource": "Prometheus",
         "definition": "label_values(kube_pod_info, namespace)",
         "error": null,
         "hide": 0,
@@ -301,7 +301,7 @@
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 0,
+        "sort": 1,
         "tagValuesQuery": "",
         "tags": [],
         "tagsQuery": "",
